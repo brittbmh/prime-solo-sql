@@ -31,7 +31,8 @@ UPDATE "accounts" SET "city" = 'santa fe' WHERE "user_id" = 5;
 SELECT * FROM "accounts" WHERE "username" = 'grace';
 DELETE FROM "accounts" WHERE "user_id" = 9;
 -- Travis made a withdrawl of $20,000. What's their new balance? NOTE: Research RETURNING
-UPDATE "accounts" SET "account_balance" = "account_balance" - 20000.00 WHERE "username" = 'travis'
+UPDATE "accounts" SET "account_balance" = "account_balance" - 20000.00, "transactions_completed" = "transactions_completed" + 1 
+    WHERE "username" = 'travis'
 	RETURNING "account_balance";
 -- The Bank needs to track last names. NOTE: Research ALTER TABLE https://www.postgresql.org/docs/10/static/sql-altertable.html
 ALTER TABLE "accounts" ADD "user_lastname" VARCHAR(60);
