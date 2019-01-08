@@ -21,3 +21,17 @@ INSERT INTO accounts (username, city, transactions_completed, transactions_attem
 -- 9. The bank is losing money in Miami and Phoenix and needs to unload low transaction customers:
 -- How do you delete users that reside in miami OR phoenix and have completed fewer than 5 transactions.
 DELETE FROM "accounts" WHERE ("city" = 'miami' OR "city" = 'phoenix') AND "transactions_completed" < 5;
+
+
+-- STRETCH GOALS
+-- Anthony moved to Santa Fe.
+SELECT * FROM "accounts" WHERE "username" = 'anthony';
+UPDATE "accounts" SET "city" = 'santa fe' WHERE "user_id" = 5;
+-- Grace closed her account.
+SELECT * FROM "accounts" WHERE "username" = 'grace';
+DELETE FROM "accounts" WHERE "user_id" = 9;
+-- Travis made a withdrawl of $20,000. What's their new balance? NOTE: Research RETURNING
+UPDATE "accounts" SET "account_balance" = "account_balance" - 20000.00 WHERE "username" = 'travis'
+	RETURNING "account_balance";
+-- The Bank needs to track last names. NOTE: Research ALTER TABLE https://www.postgresql.org/docs/10/static/sql-altertable.html
+ALTER TABLE "accounts" ADD "user_lastname" VARCHAR(60);
